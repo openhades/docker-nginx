@@ -8,6 +8,9 @@ RUN yum update -y && \
 
 WORKDIR /etc/nginx
 
-CMD ["nginx", "-g", "daemon off;"]
+ADD nginx-default.conf /etc/nginx/conf.d/default.conf
+ADD entrypoint.sh /entrypoint
+RUN chmod +x /entrypoint
+CMD ["/entrypoint"]
 
 EXPOSE 80
